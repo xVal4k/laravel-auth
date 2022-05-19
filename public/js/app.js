@@ -40102,6 +40102,9 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    Axios = _require["default"];
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -40125,6 +40128,20 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+var slugButton = document.querySelector('.slug_btn');
+
+if (slugButton) {
+  slugButton.addEventListener('click', function () {
+    var slug = document.getElementById('slug');
+    var title = document.getElementById('title').value;
+    Axios.post('/admin/get-slug', {
+      baseString: title
+    }).then(function (response) {
+      slug.value = response.data.slug;
+    });
+  });
+}
+
 var modalDelete = document.getElementById('modal-delete');
 
 if (modalDelete) {

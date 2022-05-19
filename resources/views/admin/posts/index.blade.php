@@ -12,11 +12,11 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h2 class="card-title">
                                 <a class="text-decoration-none"
-                                    href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a>
+                                    href="{{ route('admin.posts.show', $post->slug) }}">{{ $post->title }}</a>
                             </h2>
                             <div class="row row-cols-3 justify-content-center">
                                 <div class="col">
-                                    <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
+                                    <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a>
                                 </div>
                                 <div class="col" data-id="{{ $post->slug }}">
 

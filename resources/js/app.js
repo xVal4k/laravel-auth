@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+ const { default: Axios } = require('axios');
+
  require('./bootstrap');
 
 window.Vue = require('vue');
@@ -31,6 +33,20 @@ const app = new Vue({
     el: '#app',
 });
 
+const slugButton = document.querySelector('.slug_btn');
+if (slugButton) {
+    slugButton.addEventListener('click', function() {
+        const slug = document.getElementById('slug');
+        const title = document.getElementById('title').value;
+
+        Axios.post('/admin/get-slug', {
+            baseString: title,
+        })
+            .then(function (response) {
+                slug.value = response.data.slug;
+            })
+    });
+}
 
 const modalDelete = document.getElementById('modal-delete');
 if (modalDelete) {

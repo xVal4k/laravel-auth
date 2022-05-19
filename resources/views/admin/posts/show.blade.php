@@ -11,7 +11,7 @@
                     <h2 class="card-title">{{ $post->title }}</h2>
                     <p class="card-text">{{ $post->content }}</p>
                 </div>
-                <h4 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a></h4>
+                <h4 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.edit', $post->slug) }}">Edit</a></h4>
 
             </div>
         </div>
