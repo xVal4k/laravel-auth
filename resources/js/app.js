@@ -42,4 +42,9 @@ if (modalDelete) {
             modalForm.action = strAction;
         })
     });
+
+    const btnModalClose = document.querySelector('.md_close_btn');
+    btnModalClose.addEventListener('click', function() {
+        modalForm.action = '';
+    });
 }
