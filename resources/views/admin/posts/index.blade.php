@@ -25,33 +25,31 @@
                                         data-bs-target="#modal-delete">
                                         Delete
                                     </button>
-
-                                    <!-- Modal -->
-                                    <section class="modal fade" id="modal-delete" tabindex="-1"
-                                        aria-labelledby="modal-delete" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-body text-dark">
-                                                    Please confirm your choice
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button md_close_btn" class="btn btn-secondary "
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <form method="POST"
-                                                        data-base="{{ route('admin.posts.destroy', '***') }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                    </section>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
+            <!-- Modal -->
+            <section class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="modal-delete"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body text-dark">
+                            Please confirm your choice
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button md_close_btn" class="btn btn-secondary "
+                                data-bs-dismiss="modal">Close</button>
+                            <form method="POST" data-base="{{ route('admin.posts.destroy', '***') }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+            </section>
         </div>
         {{ $posts->links() }}
         <h3 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.create') }}">Add new
