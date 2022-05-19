@@ -33,6 +33,7 @@
                     <div class="mb-3">
                         <label for="slug" class="form-label">Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $post->slug) }}">
+                        <button type="button" class="btn btn-primary slug_btn">Generate slug</button>
                     </div>
                     @error('slug')
                         <div class="alert alert-danger">{{ $message }}</div>
