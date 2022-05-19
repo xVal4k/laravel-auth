@@ -18,7 +18,7 @@
                                 <div class="col">
                                     <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
                                 </div>
-                                <div class="col">
+                                <div class="col" data-id="{{ $post->slug }}">
 
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger del_btn" data-bs-toggle="modal"
@@ -27,8 +27,8 @@
                                     </button>
 
                                     <!-- Modal -->
-                                    <section class="modal fade" data-id="{{ $post->slug }}" id="modal-delete"
-                                        tabindex="-1" aria-labelledby="modal-delete" aria-hidden="true">
+                                    <section class="modal fade" id="modal-delete" tabindex="-1"
+                                        aria-labelledby="modal-delete" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-body text-dark">

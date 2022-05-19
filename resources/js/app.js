@@ -36,7 +36,7 @@ const modalDelete = document.getElementById('modal-delete');
 if (modalDelete) {
     document.querySelectorAll('.del_btn').forEach(button => {
         button.addEventListener('click', function() {
-            const id = this.closest('section').dataset.id;
+            const id = this.closest('div').dataset.id;
             const modalForm = modalDelete.querySelector('form');
             const strAction = modalForm.dataset.base.replace('***', id);
             modalForm.action = strAction;

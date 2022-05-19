@@ -40130,7 +40130,7 @@ var modalDelete = document.getElementById('modal-delete');
 if (modalDelete) {
   document.querySelectorAll('.del_btn').forEach(function (button) {
     button.addEventListener('click', function () {
-      var id = this.closest('section').dataset.id;
+      var id = this.closest('div').dataset.id;
       var modalForm = modalDelete.querySelector('form');
       var strAction = modalForm.dataset.base.replace('***', id);
       modalForm.action = strAction;
