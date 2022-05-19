@@ -15,7 +15,7 @@ class Post extends Model
     ];
 
     static public function createSlug($arg) {
-        $periodicSlug = Str::of($arg)->slug('-');
+        $periodicSlug = Str::of($arg)->slug('-')->__toString();
         $slug = $periodicSlug;
         $_i = 1;
         while(self::where('slug', $slug)->first()) {

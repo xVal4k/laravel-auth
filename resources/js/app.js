@@ -5,7 +5,6 @@
  */
 
  require('./bootstrap');
- import 'bootstrap';
 
 window.Vue = require('vue');
 
@@ -31,3 +30,21 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+
+const modalDelete = document.getElementById('modal-delete');
+if (modalDelete) {
+    document.querySelectorAll('.del_btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = this.closest('section').dataset.id;
+            const modalForm = modalDelete.querySelector('form');
+            const strAction = modalForm.dataset.base.replace('***', id);
+            modalForm.action = strAction;
+        })
+    });
+
+    const btnModalClose = document.querySelector('.md_close_btn');
+    btnNo.addEventListener('click', function() {
+        modalForm.action = '';
+    });
+}

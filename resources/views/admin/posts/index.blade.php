@@ -7,7 +7,7 @@
         <div class="row row-cols-4 g-4 py-5">
             @foreach ($posts as $post)
                 <div class="col">
-                    <div class="card h-100">
+                    <div class="card h-100" data-id="{{ $post->slug }}">
                         <img src="{{ $post->image }}" alt="{{ $post->title }}">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h2 class="card-title">
@@ -19,33 +19,33 @@
                                     <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
                                 </div>
                                 <div class="col">
+
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
+                                    <button type="button" class="btn btn-danger del_btn" data-bs-toggle="modal"
+                                        data-bs-target="#modal-delete">
                                         Delete
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <section class="modal fade" data-id="{{ $post->slug }}" id="modal-delete"
+                                        tabindex="-1" aria-labelledby="modal-delete" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-body text-dark">
                                                     Please confirm your choice
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
+                                                    <button type="button md_close_btn" class="btn btn-secondary "
                                                         data-bs-dismiss="modal">Close</button>
-                                                    <form action="{{ route('admin.posts.destroy', $post->id) }}"
-                                                        method="POST">
+                                                    <form method="POST"
+                                                        data-base="{{ route('admin.posts.destroy', '***') }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger">Delete</button>
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                    </section>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,8 @@
             @endforeach
         </div>
         {{ $posts->links() }}
-        <h3 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.create') }}">Add new comic</a>
+        <h3 class="my-4"><a class="text-decoration-none" href="{{ route('admin.posts.create') }}">Add new
+                post</a>
         </h3>
         <h3 class="my-4"><a class="text-decoration-none" href="{{ route('admin.home') }}">Home</a></h3>
     </div>

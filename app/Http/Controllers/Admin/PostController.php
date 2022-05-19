@@ -5,9 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
+
+    private function confValidation($arg) {
+        return [
+            'title' => 'required|max:100',
+            'content' => 'required',
+            'image' => 'required|max:1000',
+            'slug' => [
+                'required',
+                Rule::unique('posts')->ignore($arg),
+                'max:100'
+            ]
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +42,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -38,7 +53,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->confValidation(null));
+
+        $post = Post::create($request->all());
+
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -49,7 +68,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view ('admin.posts.show', compact('post'));
     }
 
     /**
@@ -60,7 +79,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -72,7 +91,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate($this->confValidation($post));
+
+        $post->update($request->all());
+
+        return redirect()->route('admin.posts.show', $post->slug);
     }
 
     /**
@@ -83,6 +106,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('admin.posts.index');
     }
 }

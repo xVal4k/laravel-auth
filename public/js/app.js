@@ -40094,19 +40094,15 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -40129,6 +40125,22 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+var modalDelete = document.getElementById('modal-delete');
+
+if (modalDelete) {
+  document.querySelectorAll('.del_btn').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var id = this.closest('section').dataset.id;
+      var modalForm = modalDelete.querySelector('form');
+      var strAction = modalForm.dataset.base.replace('***', id);
+      modalForm.action = strAction;
+    });
+  });
+  var btnModalClose = document.querySelector('.md_close_btn');
+  btnNo.addEventListener('click', function () {
+    modalForm.action = '';
+  });
+}
 
 /***/ }),
 
