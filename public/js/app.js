@@ -40136,10 +40136,6 @@ if (modalDelete) {
       modalForm.action = strAction;
     });
   });
-  var btnModalClose = document.querySelector('.md_close_btn');
-  btnModalClose.addEventListener('click', function () {
-    modalForm.action = '';
-  });
 }
 
 /***/ }),
